@@ -2,8 +2,15 @@
 from django.contrib import admin
 from django.urls import path
 from accounts.views import  LoginView, logout_view, RegisterView
-from products.views import ProductListView, ProductDetailView, ProductCreateView, ProductUpdateView, ProductDeleteView, CommentListView
-
+from products.views import (
+    ProductListView, 
+    ProductDetailView, 
+    ProductCreateView, 
+    ProductUpdateView, 
+    ProductDeleteView, 
+    CommentListView, 
+    CommentCreateView
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,10 +21,14 @@ urlpatterns = [
     path('product/delete/<int:pk>', ProductDeleteView.as_view(), name='product_delete'),
     path('product/confirm-delete/<int:pk>', ProductDeleteView.as_view(), name='product_confirm_delete'),
     
+
     path('product/comments/<int:pk>', CommentListView.as_view(), name='product_comments'),
+    path('product/<int:product_pk>/comment/add', CommentCreateView.as_view(), name='product_comment_add'),
     
+
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', logout_view, name='logout'),
+
 
     path('signup/', RegisterView.as_view(), name='signup'),
 ]

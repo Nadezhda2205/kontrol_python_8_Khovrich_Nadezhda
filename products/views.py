@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse, reverse_lazy
 
 from products.models import Product, Comment
-from products.forms import ProductForm
+from products.forms import ProductForm, CommentForm
 
 
 class ProductListView(ListView):
@@ -46,3 +46,13 @@ class CommentListView(ListView):
     template_name = 'product.html'
     model = Comment
     context_object_name = 'comments'
+
+
+class CommentCreateView(CreateView):
+    template_name: str = 'comments/product_comment_add.html'
+    model = Comment
+    form_class = CommentForm
+    
+    def get_success_url(self):
+        return reverse('index')
+
