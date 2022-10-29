@@ -65,12 +65,14 @@ class CommentUpdateView(UpdateView):
     context_object_name = 'comments'
 
     def get_success_url(self):
-        return reverse('product', kwargs={'pk': self.object.pk})
+        return reverse('index')
+
 
 
 class CommentDeleteView(DeleteView):
     model = Comment
     success_url = reverse_lazy('product')
 
-    # def get_success_url(self):
-    #     return reverse('product', kwargs={'pk': self.object.pk})
+
+    def get_success_url(self):
+        return reverse('product', kwargs={'pk': self.object.pk})
