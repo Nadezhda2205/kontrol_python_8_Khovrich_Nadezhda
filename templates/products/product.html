@@ -34,6 +34,14 @@
     <p >Оценка:{{ comment.valuation }}</p>
     <a class="btn btn-secondary btn-sm" style="width: 250px;" href="{% url 'product_comment_edit' comment.pk %}">Редактировать отзыв</a>
 
+
+    <form method="POST" action="{% url 'product_comment_delete' comment.pk %} "> 
+      {% csrf_token %}
+      <input type="submit" value="Удалить отзыв"> 
+    </form> 
+
+
+
  </div>
   
 {% endfor %}

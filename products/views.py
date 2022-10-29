@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
+from django.http import HttpResponseRedirect
 
 from products.models import Product, Comment
 from products.forms import ProductForm, CommentForm
@@ -65,3 +66,11 @@ class CommentUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('product', kwargs={'pk': self.object.pk})
+
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    success_url = reverse_lazy('product')
+
+    # def get_success_url(self):
+    #     return reverse('product', kwargs={'pk': self.object.pk})
