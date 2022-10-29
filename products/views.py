@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 
-from products.models import Product
+from products.models import Product, Comment
 from products.forms import ProductForm
 
 
@@ -42,3 +42,7 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy('index')
 
     
+class CommentListView(ListView):
+    template_name = 'product.html'
+    model = Comment
+    context_object_name = 'comments'
