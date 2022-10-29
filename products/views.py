@@ -12,6 +12,6 @@ class ProductListView(ListView):
 
 
 class ProductDetailView(DetailView):
-    template_name: str = 'product.html'
+    template_name: str = 'products/product.html'
     model = Product
     context_object_name = 'product'
