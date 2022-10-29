@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse
 
 from products.models import Product
+from products.forms import ProductForm
 
 
 class ProductListView(ListView):
@@ -20,11 +21,16 @@ class ProductDetailView(DetailView):
 class ProductCreateView(CreateView):
     template_name: str = 'products/product_add.html'
     model = Product
-    fields = ('name', 'description', 'image', 'category', 'description')
-    
-    def get(self, request, *args, **kwargs):
-        self.object = None
-        return super().get(request, *args, **kwargs)
+    form_class = ProductForm
+    def get_success_url(self):
+        return reverse('product', kwargs={'pk': self.object.pk})
+
+
+class ProductUpdateView(UpdateView):
+    template_name = 'products/product_edit.html'
+    form_class = ProductForm
+    model = Product
+    context_object_name = 'products'
 
     def get_success_url(self):
         return reverse('product', kwargs={'pk': self.object.pk})
