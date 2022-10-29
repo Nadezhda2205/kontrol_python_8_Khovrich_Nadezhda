@@ -9,7 +9,6 @@ from django.db import models
 
 class Account(AbstractUser):
 
-    SEX_CHOICES = [('M', 'мужской'), ('F', 'женский')] 
     
     about = models.TextField(
         null=True,
@@ -23,13 +22,7 @@ class Account(AbstractUser):
         max_length=15
 
     )
-    sex = models.CharField(
-        choices=SEX_CHOICES,
-        null=True,
-        blank=True,
-        verbose_name='Пол',
-        max_length=1
-    )
+
     
     class Meta:
         verbose_name = 'Профиль'
