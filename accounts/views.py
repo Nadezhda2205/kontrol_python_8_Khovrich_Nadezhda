@@ -38,7 +38,7 @@ class LoginView(TemplateView):
 
 def logout_view(request):
     logout(request)
-    return redirect('logout')
+    return redirect('index')
 
 
 

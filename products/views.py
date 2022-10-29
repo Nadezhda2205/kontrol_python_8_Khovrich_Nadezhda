@@ -1,30 +1,43 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 from products.models import Product, Comment
 from products.forms import ProductForm, CommentForm
 from accounts.models import Account
 
 
+class GroupPermission(UserPassesTestMixin):
+    groups = []
+
+    def test_func(self):
+        return self.request.user.groups.filter(name__in=self.groups).exists()
+
+
 class ProductListView(ListView):
     template_name = 'index.html'
     model = Product
     context_object_name = 'products'
+    groups = ['Moderator']
 
 
 class ProductDetailView(DetailView):
     template_name: str = 'products/product.html'
     model = Product
     context_object_name = 'product'
+    groups = ['Moderator']
 
 
 class ProductCreateView(CreateView):
     template_name: str = 'products/product_add.html'
     model = Product
     form_class = ProductForm
+    groups = ['Moderator']
+
     def get_success_url(self):
         return reverse('product', kwargs={'pk': self.object.pk})
+
 
 
 class ProductUpdateView(UpdateView):
@@ -41,6 +54,7 @@ class ProductDeleteView(DeleteView):
     template_name = 'products/product_confirm_delete.html'
     model = Product
     success_url = reverse_lazy('index')
+    groups = ['Moderator']
 
     
 class CommentListView(ListView):
@@ -78,6 +92,6 @@ class CommentDeleteView(DeleteView):
 class UserPageView(ListView):
     template_name = 'user_page.html'
     model = Account
-    context_object_name = 'user_obj'
+    context_object_name = 'user'
 
-    
+
