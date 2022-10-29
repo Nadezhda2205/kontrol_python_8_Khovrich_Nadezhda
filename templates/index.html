@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block title %}
-    Список продуктов 
+    Список товаров 
 {% endblock %}
 
 {% block content %}
   
-  <h1>Список продуктов</h1>
+  <h1>Список товаров</h1>
 
   {% for product in products %}
     
@@ -24,7 +24,7 @@
           <a href="{% url 'product' product.pk %}">Ещё</a>
 
           <a class="btn btn-secondary btn-sm" href="{% url 'product_edit' product.pk %}">Edit</a>
-          <a class="btn btn-secondary btn-sm" href="#">Delete</a>
+          <a class="btn btn-secondary btn-sm" href="{% url 'product_confirm_delete' product.pk %}">Delete</a>
         </div>
       </div>
     </div>

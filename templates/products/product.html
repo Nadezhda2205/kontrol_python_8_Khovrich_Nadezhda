@@ -19,8 +19,8 @@
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">{{ product.get_category_display }} </p>
         <p class="card-text"><small class="text-muted">{{ product.description }}</small></p>
-        <a class="btn btn-secondary btn-sm" href="#">Edit</a>
-        <a class="btn btn-secondary btn-sm" href="#">Delete</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'product_edit' product.pk %}">Edit</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'product_delete' product.pk %}">Delete</a>
       </div>
     </div>
   </div>

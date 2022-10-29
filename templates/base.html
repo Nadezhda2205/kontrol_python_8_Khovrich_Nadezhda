@@ -24,14 +24,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
-        {% comment %} <a class="navbar-brand" href="#"><img class="rounded-circle" src="#" alt="logo" height="55" width="66">sss</a> {% endcomment %}
-        
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'product_add' %}">Добавить продукт</a>
+            <a class="nav-link active" href="{% url 'product_add' %}">Добавить товар</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><span class="cl_color">Список продуктов</span></a>
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}"><span class="cl_color">Список товаров</span></a>
           </li>
           <div class="ms-5 d-flex align-items-center">
            
