@@ -24,28 +24,14 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#"><img class="rounded-circle" src="#" alt="logo" height="55" width="66">sss</a>
+        {% comment %} <a class="navbar-brand" href="#"><img class="rounded-circle" src="#" alt="logo" height="55" width="66">sss</a> {% endcomment %}
         
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><span class="cl_color">Список проектов</span></a>
-          </li>
-          <li class="nav-item">
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
-            <a class="nav-link active" aria-current="page" href="#"><span class="cl_color">Новый проект</span></a>
-            {% comment %} {% endif %} {% endcomment %}
+            <a class="nav-link active" aria-current="page" href="#"><span class="cl_color">Список продуктов</span></a>
           </li>
           <div class="ms-5 d-flex align-items-center">
-            <div class="align-items-center">
-              <form action="#" method="GET">
-                {% csrf_token %}
-
-                {{ searchtaskform }}
-
-                <input class="btn btn-secondary btn-sm" type="submit" value="Поиск">
-
-              </form>
-            </div>
+           
             <div class="ms-5 d-flex align-items-center">
               {% if user.is_authenticated %}
                 <li class="cl_color">

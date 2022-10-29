@@ -8,9 +8,6 @@ from accounts.forms import CustomUserСreationForm
 from accounts.forms import LoginForm
 
 
-class IndexView(TemplateView):
-    template_name = 'index.html'
-
 
 class LoginView(TemplateView):
     template_name = 'accounts/login.html'

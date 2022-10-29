@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Продукты 
+{% endblock %}
+
+
+{% block content %}
+<h1>Дополнительная информация</h1>
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ product.image }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">Количество: {{ product.balance }} </p>
+
+          <p class="card-text">Цена: {{ product.price }} </p>
+          <form action="{% url 'cart_add_product' product.pk %}" method="POST">
+            {% csrf_token %}
+        
+            <input type="number" name="quantity" style="width: 42px" value="1" min="1">
+            <button class="btn btn-secondary btn-sm" type="submit">+</button>
+          </form>
+
+          <p class="card-text">{{ product.get_category_display }} </p>
+          <p class="card-text"><small class="text-muted">{{ product.description }}</small></p>
+          <a class="btn btn-secondary btn-sm" href="{% url 'product_update' product.pk %}">Редактирование</a>
+          <a class="btn btn-secondary btn-sm" href="{% url 'product_delete' product.pk %}">Удаление</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
