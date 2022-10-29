@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+ <h3>Информация о пользователе</h3>
+ <p><b>Имя</b>{{ user.username }}</p>
+ <p><b>Электронная почта пользователя</b>{{ user.email }}</p>
+ <p><b>Дополнительная информация о пользователе</b>{{ user.about }}</p>
+ <p><b>Телефон</b>{{ user.phone }}</p>
+
+  {% endblock %}

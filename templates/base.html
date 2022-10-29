@@ -36,7 +36,7 @@
             <div class="ms-5 d-flex align-items-center">
               {% if user.is_authenticated %}
                 <li class="cl_color">
-                  Здравствуйте >>>{{ user.username }}<<<
+                  Здравствуйте >>><a href="{% url 'user_page' %}">{{ user.username }}</a>
                 </li>
                 <li>    
                   <form action="{% url 'logout' %}" method="post">

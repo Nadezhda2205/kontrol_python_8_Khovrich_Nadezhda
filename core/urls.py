@@ -11,7 +11,8 @@ from products.views import (
     CommentListView, 
     CommentCreateView,
     CommentUpdateView,
-    CommentDeleteView
+    CommentDeleteView,
+    UserPageView
 )
 
 urlpatterns = [
@@ -29,8 +30,8 @@ urlpatterns = [
     path('product/<int:pk>/comment/edit', CommentUpdateView.as_view(), name='product_comment_edit'),
     path('product/comment/<int:pk>/delete', CommentDeleteView.as_view(), name='product_comment_delete'),
 
+    path('user/', UserPageView.as_view(), name='user_page'),
 
-    
 
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', logout_view, name='logout'),

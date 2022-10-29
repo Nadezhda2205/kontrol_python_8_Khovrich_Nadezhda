@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
-from django.http import HttpResponseRedirect
 
 from products.models import Product, Comment
 from products.forms import ProductForm, CommentForm
+from accounts.models import Account
 
 
 class ProductListView(ListView):
@@ -68,9 +68,16 @@ class CommentUpdateView(UpdateView):
         return reverse('index')
 
 
-
 class CommentDeleteView(DeleteView):
     model = Comment
 
-    def get_success_url(self):
-        return reverse('index')
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('product', kwargs={'pk': self.get_object().product.pk})
+
+
+class UserPageView(ListView):
+    template_name = 'user_page.html'
+    model = Account
+    context_object_name = 'user_obj'
+
+    
