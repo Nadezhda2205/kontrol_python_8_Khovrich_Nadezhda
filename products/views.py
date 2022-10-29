@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 
 from products.models import Product, Comment
 from products.forms import ProductForm, CommentForm
-from accounts.models import Account
+
 
 
 class GroupPermission(UserPassesTestMixin):
@@ -15,21 +15,21 @@ class GroupPermission(UserPassesTestMixin):
         return self.request.user.groups.filter(name__in=self.groups).exists()
 
 
-class ProductListView(ListView):
+class ProductListView(GroupPermission, ListView):
     template_name = 'index.html'
     model = Product
     context_object_name = 'products'
     groups = ['Moderator']
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(GroupPermission, DetailView):
     template_name: str = 'products/product.html'
     model = Product
     context_object_name = 'product'
     groups = ['Moderator']
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(GroupPermission, CreateView):
     template_name: str = 'products/product_add.html'
     model = Product
     form_class = ProductForm
@@ -40,7 +40,7 @@ class ProductCreateView(CreateView):
 
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(GroupPermission, UpdateView):
     template_name = 'products/product_edit.html'
     form_class = ProductForm
     model = Product
@@ -50,7 +50,7 @@ class ProductUpdateView(UpdateView):
         return reverse('product', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(GroupPermission, DeleteView):
     template_name = 'products/product_confirm_delete.html'
     model = Product
     success_url = reverse_lazy('index')
@@ -87,11 +87,3 @@ class CommentDeleteView(DeleteView):
 
     def get_success_url(self, **kwargs):
         return reverse_lazy('product', kwargs={'pk': self.get_object().product.pk})
-
-
-class UserPageView(ListView):
-    template_name = 'user_page.html'
-    model = Account
-    context_object_name = 'user'
-
-

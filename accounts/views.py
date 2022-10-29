@@ -1,12 +1,17 @@
 
 from django.shortcuts import redirect
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 from django.contrib.auth import authenticate, login, logout
-
+from accounts.models import Account
 
 from accounts.forms import CustomUserСreationForm
 from accounts.forms import LoginForm
 
+
+class UserPageView(DetailView):
+    template_name = 'user_page.html'
+    model = Account
+    context_object_name = 'user'
 
 
 class LoginView(TemplateView):

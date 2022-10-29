@@ -12,8 +12,10 @@ from products.views import (
     CommentCreateView,
     CommentUpdateView,
     CommentDeleteView,
-    UserPageView
+    
 )
+from accounts.views import UserPageView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
