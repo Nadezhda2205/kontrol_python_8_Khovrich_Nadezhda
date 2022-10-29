@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import get_object_or_404
 
 from products.models import Product, Comment
 from products.forms import ProductForm, CommentForm
@@ -64,6 +65,14 @@ class CommentCreateView(CreateView):
     
     def get_success_url(self):
         return reverse('index')
+
+    def form_valid(self, form):
+        self.object: Comment = form.save(commit=False)
+        product_pk = self.kwargs.get('pk')
+        self.object.product = get_object_or_404(Product, pk=product_pk)
+        self.object.author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class CommentUpdateView(UpdateView):

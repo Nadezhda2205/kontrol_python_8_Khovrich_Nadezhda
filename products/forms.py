@@ -12,4 +12,4 @@ class ProductForm(ModelForm):
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ['author', 'product', 'text', 'valuation']
+        fields = ['text', 'valuation']
