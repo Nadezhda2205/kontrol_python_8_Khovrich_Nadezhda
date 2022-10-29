@@ -9,7 +9,8 @@ from products.views import (
     ProductUpdateView, 
     ProductDeleteView, 
     CommentListView, 
-    CommentCreateView
+    CommentCreateView,
+    CommentUpdateView
 )
 
 urlpatterns = [
@@ -23,7 +24,9 @@ urlpatterns = [
     
 
     path('product/comments/<int:pk>', CommentListView.as_view(), name='product_comments'),
-    path('product/<int:product_pk>/comment/add', CommentCreateView.as_view(), name='product_comment_add'),
+    path('product/<int:pk>/comment/add', CommentCreateView.as_view(), name='product_comment_add'),
+    path('product/<int:pk>/comment/edit', CommentUpdateView.as_view(), name='product_comment_edit'),
+
     
 
     path('login/', LoginView.as_view(), name='login'),

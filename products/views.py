@@ -56,3 +56,12 @@ class CommentCreateView(CreateView):
     def get_success_url(self):
         return reverse('index')
 
+
+class CommentUpdateView(UpdateView):
+    template_name = 'comments/comment_edit.html'
+    form_class = CommentForm
+    model = Comment
+    context_object_name = 'comments'
+
+    def get_success_url(self):
+        return reverse('product', kwargs={'pk': self.object.pk})

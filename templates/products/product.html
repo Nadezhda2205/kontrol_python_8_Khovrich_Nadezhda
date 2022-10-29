@@ -26,12 +26,14 @@
     </div>
   </div>
 </div>
-<p>Отзыв о продукте</p>
+<p>Отзывы о продукте</p>
 {% for comment in product.comments.all %}
   <div class="card mb-3">
     <p >Автор:{{ comment.author }}</p>
     <p >Текст:{{ comment.text }}</p>
     <p >Оценка:{{ comment.valuation }}</p>
+    <a class="btn btn-secondary btn-sm" style="width: 250px;" href="{% url 'product_comment_edit' comment.pk %}">Редактировать отзыв</a>
+
  </div>
   
 {% endfor %}
