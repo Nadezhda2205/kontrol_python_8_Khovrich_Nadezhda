@@ -32,7 +32,7 @@ urlpatterns = [
     path('product/<int:pk>/comment/edit', CommentUpdateView.as_view(), name='product_comment_edit'),
     path('product/comment/<int:pk>/delete', CommentDeleteView.as_view(), name='product_comment_delete'),
 
-    path('user/', UserPageView.as_view(), name='user_page'),
+    path('user/<int:pk>', UserPageView.as_view(), name='user_page'),
 
 
     path('login/', LoginView.as_view(), name='login'),
